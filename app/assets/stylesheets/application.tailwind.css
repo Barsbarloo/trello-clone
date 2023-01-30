@@ -11,3 +11,9 @@
 }
 
 */
+
+@layer utilities{
+  .link{
+    @apply text-white-700 tracking wide;
+    &:hover {@apply text-white-900;}}
+  }
