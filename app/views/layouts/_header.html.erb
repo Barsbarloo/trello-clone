@@ -84,6 +84,11 @@
             </div>
           </div>
         </div>
+        <% else %>
+          <div class="ml-4 flex flex-shrink-0 text-white item-center">
+            <%= link_to "Register", new_user_registration_path, class: "text-white tracking-wide hover: text-white" %>
+            <%= link_to "Log In",new_user_session_path, class: "ml-3 text-white tracking-wide hover: text-whit" %>
+            </div>
       <% end %>
       
     </div>
