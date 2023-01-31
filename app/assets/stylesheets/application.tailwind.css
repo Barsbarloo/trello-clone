@@ -10,10 +10,14 @@
   }
 }
 
-*/
+
 
 @layer utilities{
   .link{
     @apply text-white-700 tracking wide;
-    &:hover {@apply text-white-900;}}
+    &:hover {
+      @apply text-white-900;
+      }
+    }
   }
+  */
