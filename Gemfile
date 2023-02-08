@@ -9,6 +9,7 @@ gem "jbuilder"
 gem "importmap-rails"
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
+gem "pundit", "~> 2.3"
 gem "rails", "~> 7.0.4", ">= 7.0.4.1"
 gem "redis", "~> 4.0"
 gem "sassc-rails"
@@ -50,4 +51,3 @@ end
 group :test do
   gem "shoulda-matchers", "~> 5.0"
 end
-
