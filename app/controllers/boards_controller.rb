@@ -7,6 +7,7 @@ class BoardsController < ApplicationController
 
   def edit
     @board = Board.find(params[:id])
+    authorize @board
   end
 
   def create

@@ -5,4 +5,8 @@ class BoardPolicy < ApplicationPolicy
     #   scope.all
     # end
   end
+
+  def edit?
+    record.user == user
+  end
 end
