@@ -22,6 +22,7 @@ class BoardsController < ApplicationController
 
   def update
     @board = Board.find(params[:id])
+    authorize @board
 
     if @board.update(board_params)
       redirect_to root_path
