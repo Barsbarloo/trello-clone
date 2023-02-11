@@ -76,4 +76,15 @@ RSpec.describe "Boards", type: :request do
       end
     end
   end
+
+  describe "Delete destroy" do
+    it "deletes the board record" do
+      board
+      expect do
+        delete board_path(board)
+      end.to change { Board.count }.by(-1)
+      expect(response).to have_http_status(:redirect)
+    end
+  end
 end
+
