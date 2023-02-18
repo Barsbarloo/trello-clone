@@ -89,6 +89,5 @@ export default class extends Controller {
         buttonClick      : function(el, boardId) {},                     // callback when the board's button is clicked
         propagationHandlers: [],                                         // the specified callback does not cancel the browser event. possible values: "click", "context"
     });
-    console.log('kanban', kanban);
   }
 }
