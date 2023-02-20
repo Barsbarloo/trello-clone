@@ -29,7 +29,7 @@ export default class extends Controller {
         'id': get(board, 'id'),
         'title': get(board, 'attributes.title'),
         'class': this.buildClassList(get(board, 'attributes.class_list')),
-        'item': this.buildItems(get(board, 'realtionship.items.data'))
+        'item': this.buildItems(get(board, 'attributes.items.data'))
       }
     });
   }
@@ -43,8 +43,6 @@ export default class extends Controller {
       console.log('list response: ', response);
 
       const boards = this.buildBoards(response['data']);
-
-      console.log('boards: ', boards);
 
       var kanban = new jKanban(
         {
