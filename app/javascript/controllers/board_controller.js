@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 import axios from 'axios';
-import { get, map, isNull, sample} from 'lodash-es';
+import { get, map, sample} from 'lodash-es';
 
 export default class extends Controller {
   HEADERS = { 'ACCEPT': 'application/json' };
