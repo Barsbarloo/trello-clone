@@ -1,9 +1,10 @@
 import { Controller } from "@hotwired/stimulus";
 import axios from 'axios';
-import { get, map, isNull} from 'lodash-es';
+import { get, map, isNull, sample} from 'lodash-es';
 
 export default class extends Controller {
   HEADERS = { 'ACCEPT': 'application/json' };
+  BACKGROUND_COLORS = ['bg-green-700', 'bg-red-700','bg-blue-700','bg-slate-700','bg-yellow-700'];
 
   connect() {
     axios.get('/api/boards/1/lists', { headers: this.HEADERS }).then((response) => {
@@ -11,12 +12,8 @@ export default class extends Controller {
     });
   }
 
-  buildClassList(classList){
-    if (isNull(classList)) {
-      return '';
-    }
-
-    return classList.split(' ').join(', ');
+  buildClassList(){
+    return `text-white, ${sample(this.BACKGROUND_COLORS)}`;
   }
 
   buildItems(items){
@@ -24,9 +21,9 @@ export default class extends Controller {
       return{
        'id': get(item, 'id'),
        'title': get(item, 'attributes.title'),
-        'class': this.buildClassList(get(item, 'attributes.class_list'))
+        'class': this.buildClassList()
       }
-    })
+    });
   }
 
   buildBoards(boardsData) {
@@ -34,7 +31,7 @@ export default class extends Controller {
       return {
         'id': get(board, 'id'),
         'title': get(board, 'attributes.title'),
-        'class': this.buildClassList(get(board, 'attributes.class_list')),
+        'class': this.buildClassList(),
         'item': this.buildItems(get(board, 'attributes.items.data'))
       }
     });
@@ -46,7 +43,7 @@ export default class extends Controller {
       boards: boards,
       itemAddOptions: {
         enabled:  true
-    },
+    }
     });
   }
 }
