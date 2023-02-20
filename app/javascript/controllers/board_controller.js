@@ -7,7 +7,7 @@ export default class extends Controller {
   BACKGROUND_COLORS = ['bg-green-700', 'bg-red-700','bg-blue-700','bg-slate-700','bg-yellow-700'];
 
   connect() {
-    axios.get('/api/boards/1/lists', { headers: this.HEADERS }).then((response) => {
+    axios.get(this.element.dataset.apiUrl, { headers: this.HEADERS }).then((response) => {
       this.buildKanban(this.buildBoards(response['data']));
     });
   }
