@@ -39,16 +39,21 @@
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <%= link_to "Dashboard", root_path, class:"bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" %>
             <% end %>
-            <%= link_to new_board_path, class: "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" do %>
-              <span>New board </span>
+
+            <% if controller_name == "boards" %>
+                <%= link_to new_board_path, class: "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" do %>
+                  <span>New List </span>
+                <% end %>
+              <% else %>
+                <%= link_to new_board_path, class: "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" do %>
+                  <span>New board </span>
+                <% end %>
             <% end %>
           </div>
         </div>
       </div>
       <% if user_signed_in? %>
-        
-         
-          <div class= text-white>
+            <div class= text-white>
             <%= link_to "Log out", destroy_user_session_path, data: {"turbo-method": :delete} %>
           </div>
           
