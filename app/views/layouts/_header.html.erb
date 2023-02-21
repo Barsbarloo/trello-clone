@@ -40,8 +40,8 @@
             <%= link_to "Dashboard", root_path, class:"bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" %>
             <% end %>
 
-            <% if controller_name == "boards" %>
-                <%= link_to new_board_path, class: "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" do %>
+            <% if controller_name.in?(%w[boards lists]) %>
+                <%= link_to new_board_list_path(@board), class: "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" do %>
                   <span>New List </span>
                 <% end %>
               <% else %>
