@@ -16,10 +16,19 @@ export default class extends Controller {
     });
   }
 
+  addLinkToHeaderTitles(boards) {
+    this.getHeaderTitles().forEach((headerTitle, index) =>{
+      headerTitle.addEventListener('click',() => {
+        Turbo.visit(`${this.element.dataset.boardListsUrl}/${boards[index].id}/edit `);
+      });
+    });
+  }
+
   connect() {
      axios.get(this.element.dataset.apiUrl, { headers: this.HEADERS }).then((response) => {
       this.buildKanban(this.buildBoards(response['data']));
       this.cursorifyHeaderTitles();
+      this.addLinkToHeaderTitles(this.buildBoards(response['data']));
     });
   }
 
