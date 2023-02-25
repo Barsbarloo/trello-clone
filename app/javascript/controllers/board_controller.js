@@ -40,6 +40,12 @@ export default class extends Controller {
       e.preventDefault();
 
       console.log('button clicked with boardId: ', boardId);
+
+      axios.delete(`${this.element.dataset.boardListsUrl}/${boardId}`, {
+        headers: this.HEADERS
+      }).then((_)=> {
+        Turbo.visit(window.location.href);
+      });
     });
     return button;
   }
