@@ -4,10 +4,14 @@ import { get, map, sample} from 'lodash-es';
 
 export default class extends Controller {
   HEADERS = { 'ACCEPT': 'application/json' };
-  BACKGROUND_COLORS = ['bg-green-700', 'bg-red-700','bg-blue-700','bg-slate-700','bg-yellow-700'];
+  BACKGROUND_COLORS = ['bg-green-700', 'bg-red-700','bg-blue-700','bg-slate-700','bg-yellow-700', 'bg-pink-700', 'bg-orange-700'];
+
+  getHeaders() {
+    return Array.from(document.getElementsByClassName("kanban-board-header"));
+  }
 
   getHeaderTitles() {
-    return Array.from(document.querySelectorAll('.kanban-title-board'));
+    return Array.from(document.querySelectorAll('kanban-title-board'));
   }
 
   cursorifyHeaderTitles() {
@@ -24,11 +28,33 @@ export default class extends Controller {
     });
   }
 
+  buildBoardDeleteButton(boardId) {
+    const button = document.createElement('button');
+    button.classList.add('kanban-title-button');
+    button.classList.add('btn');
+    button.classList.add('btn-default')
+    button.classList.add('btn-xs')
+    button.classList.add('mr-2')
+    button.textContent = 'x';
+    button.addEventListener('click', (e) =>{
+      e.preventDefault();
+
+      console.log('button clicked with boardId: ', boardId);
+    });
+    return button;
+  }
+  addHeaderDeleteButtons(boards) {
+    this.getHeaders().forEach((header, index) => {
+      header.appendChild(this.buildBoardDeleteButton(boards[index].id));
+    });
+  }
+
   connect() {
      axios.get(this.element.dataset.apiUrl, { headers: this.HEADERS }).then((response) => {
       this.buildKanban(this.buildBoards(response['data']));
       this.cursorifyHeaderTitles();
       this.addLinkToHeaderTitles(this.buildBoards(response['data']));
+      this.addHeaderDeleteButtons(this.buildBoards(response['data']));
     });
   }
 
