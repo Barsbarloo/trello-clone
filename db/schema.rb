@@ -35,7 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_165954) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "position"
+    t.integer "position", default: 0, null: false
     t.index ["board_id"], name: "index_lists_on_board_id"
   end
 
