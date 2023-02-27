@@ -1,7 +1,7 @@
 module Api
   class ListsController < ApplicationController
     def index
-      @lists = board.lists
+      @lists = board.lists.order(position: :asc)
 
       render json: ListSerializer.new(@lists).serializable_hash
     end
