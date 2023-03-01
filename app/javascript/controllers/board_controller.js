@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 import axios from 'axios';
-import { get, map, sample} from 'lodash-es';
+import { get, map, sample } from 'lodash-es';
 
 export default class extends Controller {
   HEADERS = { 'ACCEPT': 'application/json' };
@@ -96,8 +96,21 @@ export default class extends Controller {
       itemAddOptions: {
         enabled:  true
     },
-    buttonClick: ()=>{
+    buttonClick: () => {
       console.log('board clicked');
+    },
+    dragendBoard: (el) => {
+      console.log('dragenBoard.el: ', el);
+      console.log('board.id: ', el.dataset.id);
+      console.log('board.position: ', el.dataset.order - 1);
+
+      axios.put(`${this.element.dataset.apiUrl}/${el.dataset.id}`, {
+          position: el.dataset.order - 1
+      }, { 
+        headers: this.HEADERS 
+      }).then((response) => {
+        console.log('response: ', response);
+      });
     },
     });
   }
