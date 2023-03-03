@@ -13,7 +13,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :boards do
-      resources :lists, only: [:index, :update], controller: "lists"
+      resources :lists, only: :index, controller: "lists"
+      resources :list_positions, only: :update, controller: "list_positions"
     end
   end
 end
