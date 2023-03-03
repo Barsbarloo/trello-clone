@@ -64,7 +64,7 @@ export default class extends Controller {
   }
 
   buildClassList(){
-    return `text-white, bg-blue-700`;
+    return `text-white, bg-blue-800`;
   }
 
   buildItems(items){
