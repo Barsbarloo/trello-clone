@@ -8,8 +8,10 @@ module Api
       list = lists.delete_at(delete_index)
       lists.insert(params[:position].to_i, list)
       lists.each_with_index do |list, index|
-        list.update(position: index)
+        list.position = index
       end
+
+      List.import lists, on_duplicate_key_update:{ conflict_target: [:id], columns: [:position] }
 
       render json: ListSerializer.new(lists).serializable_hash.to_json
     end
