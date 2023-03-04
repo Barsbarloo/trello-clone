@@ -12,10 +12,10 @@ class ItemsController < ApplicationController
   # end
 
   def create
-    @list = board.lists.new(list_params)
+    @item = list.items.new(item_params)
 
-    if @list.save
-      redirect_to board_path(board)
+    if @item.save
+      redirect_to board_path(list.board)
     else
       render :new
     end
