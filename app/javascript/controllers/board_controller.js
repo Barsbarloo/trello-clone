@@ -105,7 +105,7 @@ export default class extends Controller {
         enabled:  true
     },
     buttonClick: (el, boardId) => {
-      console.log('board clicked');
+      Turbo.visit(`/lists/${boardId}/items/new`);
     },
     dragendBoard: (el) => {
       this.updateListPosition(el);
