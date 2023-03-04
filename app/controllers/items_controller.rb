@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   protect_from_forgery with: :null_session, only: :destroy
 
   def new
-    @list = board.lists.new
+    @item = list.items.new
   end
 
   # def edit
