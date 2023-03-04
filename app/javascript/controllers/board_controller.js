@@ -88,6 +88,15 @@ export default class extends Controller {
     });
   }
 
+  updateListPosition(el) {
+    axios.put(`${this.element.dataset.listPositionsApiUrl}/${el.dataset.id}`, {
+      position: el.dataset.order - 1
+    }, { 
+      headers: this.HEADERS 
+    }).then(() => {
+    });
+  }
+
   buildKanban(boards) {
     new jKanban({
       element: `#${this.element.id}`,
@@ -95,17 +104,11 @@ export default class extends Controller {
       itemAddOptions: {
         enabled:  true
     },
-    buttonClick: () => {
+    buttonClick: (el, boardId) => {
       console.log('board clicked');
     },
     dragendBoard: (el) => {
-      axios.put(`${this.element.dataset.listPositionsApiUrl}/${el.dataset.id}`, {
-          position: el.dataset.order - 1
-      }, { 
-        headers: this.HEADERS 
-      }).then((response) => {
-        console.log('response: ', response);
-      });
+      this.updateListPosition(el);
     },
     });
   }
