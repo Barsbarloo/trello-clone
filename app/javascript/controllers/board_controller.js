@@ -110,6 +110,31 @@ export default class extends Controller {
     dragendBoard: (el) => {
       this.updateListPosition(el);
     },
+    click: (el) => {
+      console.log('click');
+      console.log('click.el ', el);
+    },                             
+    context: (el, event) => {
+      console.log('context.el ', el);
+      console.log('context.el ', el);
+      console.log('context.event: ', event);
+    },             
+    dragEl: (el, source) => {
+      console.log('dragEl');
+      console.log('dragEl.el: ', el);
+      console.log('dragEl.event: ', source);
+    },
+    dragendEl: (el) => {
+      console.log('dragendEl');
+      console.log('dragendEl.el: ', source);
+    },
+    dropEl: (el, target, source, sibling) => {
+      console.log('dropEl');
+      console.log('dropEl.el: ', el);
+      console.log('dropEl.target: ', target);
+      console.log('dropEl.source: ', source);
+      console.log('dropEl.sibling: ', sibling);
+    },
     });
   }
 }
