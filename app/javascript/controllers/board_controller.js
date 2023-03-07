@@ -72,7 +72,8 @@ export default class extends Controller {
       return{
        'id': get(item, 'id'),
        'title': get(item, 'attributes.title'),
-        'class': this.buildClassList()
+        'class': this.buildClassList(),
+        'list-id': get(item, 'attributes.list_id'),
       }
     });
   }
@@ -110,30 +111,28 @@ export default class extends Controller {
     dragendBoard: (el) => {
       this.updateListPosition(el);
     },
-    click: (el) => {
-      console.log('click');
-      console.log('click.el ', el);
-    },                             
-    context: (el, event) => {
-      console.log('context.el ', el);
-      console.log('context.el ', el);
-      console.log('context.event: ', event);
-    },             
-    dragEl: (el, source) => {
-      console.log('dragEl');
-      console.log('dragEl.el: ', el);
-      console.log('dragEl.event: ', source);
-    },
-    dragendEl: (el) => {
-      console.log('dragendEl');
-      console.log('dragendEl.el: ', source);
-    },
     dropEl: (el, target, source, sibling) => {
       console.log('dropEl');
       console.log('dropEl.el: ', el);
       console.log('dropEl.target: ', target);
       console.log('dropEl.source: ', source);
       console.log('dropEl.sibling: ', sibling);
+
+      const targetItems = Array.from(target.getElementsByClassName('kanban-item'));
+      const sourceItems = Array.from(source.getElementsByClassName('kanban-item'));
+
+      console.log('targetItems: ', targetItems);
+      console.log('sourceItems: ', sourceItems);
+
+      targetItems.forEach((item, index) => {
+        item.dataset.position = index;
+        item.dataset.listId = target.closest('.kanban-board').dataset.id;
+      });
+      sourceItems.forEach((item, index) => {
+        item.dataset.positin = index;
+        item.dataset.listId = source.closest('.kanban-board').dataset.id;
+      });
+
     },
     });
   }
