@@ -7,9 +7,9 @@ class ItemsController < ApplicationController
     @item = list.items.new
   end
 
-  # def edit
-  #   @list = board.lists.find(params[:id])
-  # end
+  def edit
+    @item = list.items.find(params[:id])
+  end
 
   def create
     @item = list.items.new(item_params)
