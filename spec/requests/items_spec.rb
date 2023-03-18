@@ -55,32 +55,30 @@ RSpec.describe "Items", type: :request do
     end
   end
 
-  pending do
-    describe "PUT update" do
-      context "with valid params" do
-        it "updates the list and redirects" do
-          expect do
-            put board_list_path(board, list), params:{
-              list:{
-                title: "Updated List"
-              }
+  describe "PUT update" do
+    context "with valid params" do
+      it "updates the item and redirects" do
+        expect do
+          put list_item_path(list, item), params:{
+            item:{
+              title: "Updated Item"
             }
-          end.to change { list.reload.title }.to("Updated List")
-          expect(response).to have_http_status(:redirect)
-        end
+          }
+        end.to change { item.reload.title }.to("Updated Item")
+        expect(response).to have_http_status(:redirect)
       end
-      
-      context "with invalid params" do
-        it "does not update the list and renders edit" do
-          expect do
-            put board_list_path(board, list), params:{
-              list:{
-                title: ""
-              }
+    end
+    
+    context "with invalid params" do
+      it "does not update the item and renders edit" do
+        expect do
+          put list_item_path(list, item), params:{
+            item:{
+              title: ""
             }
-          end.not_to change { list.reload.title }
-          expect(response).to have_http_status(:success)
-        end
+          }
+        end.not_to change { item.reload.title }
+        expect(response).to have_http_status(:success)
       end
     end
   end
