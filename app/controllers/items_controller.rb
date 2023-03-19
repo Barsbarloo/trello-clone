@@ -31,15 +31,11 @@ class ItemsController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @list = board.lists.find(params[:id])
-  #   @list.destroy
-  #   respond_to do |format|
-  #     format.json do
-  #       render json: {}, status:200
-  #     end
-  #   end
-  # end
+  def destroy
+    @item = list.items.find(params[:id])
+    @item.destroy
+    redirect_to board_path(list.board)
+  end
 
   private
 
