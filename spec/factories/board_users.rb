@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :board_user do
-    board { nil }
-    user { nil }
+    board
+    user
   end
 end
