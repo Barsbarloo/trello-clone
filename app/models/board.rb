@@ -6,4 +6,5 @@ class Board < ApplicationRecord
   has_many :lists, dependent: :destroy
 
   has_many :board_users, dependent: :destroy
+  has_many :members, through: :board_users, class_name: "User"
 end
