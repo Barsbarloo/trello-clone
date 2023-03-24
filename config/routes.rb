@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :items
   end
 
+resources :board_members
+
   namespace :api do
     resources :boards do
       resources :lists, only: :index, controller: "lists"
