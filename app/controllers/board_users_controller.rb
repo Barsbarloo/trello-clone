@@ -1,8 +1,8 @@
-class BoardMembersController < ApplicationController
+class BoardUsersController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @board = Board.new
+    @board_user = board.board_users.new
   end
 
   def edit
@@ -46,6 +46,6 @@ class BoardMembersController < ApplicationController
   end
 
   def board
-    @board ||= Board.find(params[:id])
+    @board ||= Board.find(params[:board_id])
   end
 end
