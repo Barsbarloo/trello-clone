@@ -17,10 +17,12 @@
                     <% User.find_each do |user| %>
                       <div class="relative flex items-start py-4">
                         <div class="min-w-0 flex-1 text-sm">
-                          <label for="person-1" class="select-name font-medium text-gray-700"><%= user.email %></label>
+                          <%= f.label :user_ids, class:"select-name font-medium text-gray-700" do %>
+                            <%= user.email %>
+                          <% end %>
                         </div>
                         <div class="ml-3 flex h-5 items-center">
-                          <%= f.check_box :members, class:"h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"%>
+                          <%= f.check_box :user_ids, { multiple: true, checked: @board.members.include?(user), disabled: @board.user == user }, class:"h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"%>
                         </div>
                       </div>
                     <% end %>
