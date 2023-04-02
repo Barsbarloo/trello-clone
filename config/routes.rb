@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :boards do
     resources :lists, except: :show
-    resources :board_users, except: :show
+    resources :board_users, except: [:show, :update]
   end
 
   resources :lists do
