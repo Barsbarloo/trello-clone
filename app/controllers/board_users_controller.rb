@@ -6,8 +6,6 @@ class BoardUsersController < ApplicationController
   end
 
   def create
-    @board = Board.new(board_params.merge(user: current_user))
-
     if @board.save
       redirect_to root_path
     else
@@ -17,8 +15,8 @@ class BoardUsersController < ApplicationController
 
   private
 
-  def board_params
-    params.require(:board).permit(:name)
+  def user_ids
+    params[:user_ids].map(&:to_i).reject(&:zero?)
   end
 
   def board
