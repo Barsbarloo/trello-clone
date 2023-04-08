@@ -1,5 +1,5 @@
 <div class="bg-white mt-12 px-8 py-12 rounded-xl drop-shadow-lg">
-  <%= form_with model: [@board, @board_user], url: board_board_users_path(@board), local: true, class: "space-y-8 divide-gray-200" do |f| %>
+  <%= form_with url: board_board_users_path(@board), scope: nil, local: true, class: "space-y-8 divide-gray-200" do |f| %>
     <div class="mt-10 sm:mt-0">
       <div class="md:grid md:grid-cols-3 md:gap-6">
         <div class="md:col-span-1">
@@ -22,7 +22,7 @@
                           <% end %>
                         </div>
                         <div class="ml-3 flex h-5 items-center">
-                          <%= f.check_box :user_ids, { multiple: true, checked: @board.members.include?(user), disabled: @board.user == user }, class:"h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"%>
+                          <%= f.check_box :user_ids, { class:"h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500", multiple: true, checked: @board.members.include?(user), disabled: @board.user == user }, user.id %>
                         </div>
                       </div>
                     <% end %>
