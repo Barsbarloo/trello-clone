@@ -1,0 +1,3 @@
+class ItemMembersController < ApplicationController
+  
+end
