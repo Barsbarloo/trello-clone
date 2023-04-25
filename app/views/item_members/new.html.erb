@@ -1,0 +1,42 @@
+<div class="bg-white mt-12 px-8 py-12 rounded-xl drop-shadow-lg">
+  <%= form_with url: item_item_members_path(@item), scope: nil, local: true, class: "space-y-8 divide-gray-200" do |f| %>
+    <div class="mt-10 sm:mt-0">
+      <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="md:col-span-1">
+          <div class="px-4 sm:px-0">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Board Members List</h3>
+            <p class="mt-1 text-sm text-gray-600">This form adds/removes board member.</p>
+          </div>
+        </div>
+        <div class="mt-5 md:col-span-2 md:mt-0">
+          <div class="overflow-hidden shadow sm:rounded-md">
+            <div class="bg-white px-4 py-5 sm:p-6">
+                <fieldset>
+                  <legend class="text-lg font-medium text-gray-900">Members</legend>
+                  <div class="mt-4 divide-y divide-gray-200 border-t border-b border-gray-200">
+                    <% User.find_each do |user| %>
+                      <div class="relative flex items-start py-4">
+                        <div class="min-w-0 flex-1 text-sm">
+                          <%= f.label :user_ids, class:"select-name font-medium text-gray-700" do %>
+                            <%= user.email %>
+                          <% end %>
+                        </div>
+                        <div class="ml-3 flex h-5 items-center">
+                          <%= f.check_box :user_ids, { class:"h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500", multiple: true, checked: @board.members.include?(user), disabled: @board.user == user }, user.id %>
+                        </div>
+                      </div>
+                    <% end %>
+                </fieldset>
+
+              </div>
+            </div>
+              <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                <%= link_to "Cancel", root_path, class:"inline-flex justify-center rounded-md border border-transparent bg-gray-500 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"%>
+                <%= f.submit "Assign Members", class:"cursor-pointer inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"%>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div> 
+  <% end %>
+</div>
