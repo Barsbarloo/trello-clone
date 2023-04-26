@@ -4,8 +4,8 @@
       <div class="md:grid md:grid-cols-3 md:gap-6">
         <div class="md:col-span-1">
           <div class="px-4 sm:px-0">
-            <h3 class="text-lg font-medium leading-6 text-gray-900">Board Members List</h3>
-            <p class="mt-1 text-sm text-gray-600">This form adds/removes board member.</p>
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Item Members List</h3>
+            <p class="mt-1 text-sm text-gray-600">This form adds/removes item member.</p>
           </div>
         </div>
         <div class="mt-5 md:col-span-2 md:mt-0">
@@ -15,14 +15,14 @@
                   <legend class="text-lg font-medium text-gray-900">Members</legend>
                   <div class="mt-4 divide-y divide-gray-200 border-t border-b border-gray-200">
                     <% User.find_each do |user| %>
-                      <div class="relative flex items-start py-4">
+                      <div class="relative flex items-start py-4"> 
                         <div class="min-w-0 flex-1 text-sm">
                           <%= f.label :user_ids, class:"select-name font-medium text-gray-700" do %>
                             <%= user.email %>
                           <% end %>
                         </div>
                         <div class="ml-3 flex h-5 items-center">
-                          <%= f.check_box :user_ids, { class:"h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500", multiple: true, checked: @board.members.include?(user), disabled: @board.user == user }, user.id %>
+                          <%= f.check_box :user_ids, { class:"h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500", multiple: true, checked: @item.members.include?(user)}, user.id %>
                         </div>
                       </div>
                     <% end %>
