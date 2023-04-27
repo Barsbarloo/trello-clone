@@ -141,6 +141,7 @@ export default class extends Controller {
       document.getElementById('item-title').textContent = get(response, 'data.data.attributes.title');
       document.getElementById('item-description').textContent = get(response, 'data.data.attributes.description');
       document.getElementById('item-edit-link').href = `/lists/${get(response,'data.data.attributes.list_id')}/items/${itemId}/edit`
+      document.getElementById('item-assign-member-link').href = `/items/${get(response,'data.data_id')}/item_members/new`
       document.getElementById('item-delete-link').href = `/lists/${get(response,'data.data.attributes.list_id')}/items/${itemId}`
     });
   }
