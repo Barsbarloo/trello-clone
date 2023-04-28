@@ -2,6 +2,7 @@ class ItemMembersController < ApplicationController
   before_action :authenticate_user!
 
   def new
+    item
   end
 
   def create
