@@ -14,7 +14,7 @@
                 <fieldset>
                   <legend class="text-lg font-medium text-gray-900">Members</legend>
                   <div class="mt-4 divide-y divide-gray-200 border-t border-b border-gray-200">
-                    <% User.find_each do |user| %>
+                    <% @item.list.board.members.find_each do |user| %>
                       <div class="relative flex items-start py-4"> 
                         <div class="min-w-0 flex-1 text-sm">
                           <%= f.label :user_ids, class:"select-name font-medium text-gray-700" do %>
