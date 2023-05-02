@@ -13,7 +13,7 @@ class ItemMembersController < ApplicationController
     ItemMember.where(item: item, user_id: user_ids_to_destroy).delete_all
     users_to_assign = User.where(id: user_ids)
     item.members << users_to_assign
-    redirect_to board_path(board)
+    redirect_to board_path(item.list.board)
   end
 
   private
